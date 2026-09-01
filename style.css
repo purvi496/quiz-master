@@ -1,0 +1,47 @@
+body {
+    background-color: #f5f7fb;
+}
+
+h1 {
+    font-weight: 700;
+}
+
+.card {
+    border: none;
+}
+
+#options button {
+    text-align: left;
+    padding: 12px;
+}
+
+#options button:hover {
+    background-color: #e9ecef;
+}
+
+#question {
+    font-size: 24px;
+}
+
+.progress {
+    height: 10px;
+}
+#options button:disabled {
+    opacity: 1;
+}
+#review-section {
+    text-align: left;
+}
+
+#review-container .card {
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+#review-container h5 {
+    margin-bottom: 15px;
+}
+
+#review-container p {
+    margin-bottom: 8px;
+}
