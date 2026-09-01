@@ -270,7 +270,6 @@ function showQuestion() {
 
         optionsContainer.appendChild(button);
     });
-
     // Disable the Next button until an answer is selected
 }
 function startTimer() {
@@ -469,6 +468,9 @@ function showResults() {
     quizScreen.classList.add("d-none");
 
     resultScreen.classList.remove("d-none");
+    document.getElementById("review-section").hidden = true;
+    
+    document.getElementById("review-container").innerHTML = "";
 
     document.getElementById("final-score").textContent =
         score + " points";
@@ -557,18 +559,15 @@ reviewContainer.classList.add("mt-3");
         reviewContainer.appendChild(reviewCard);
     });
 
-    // Show review section
-    document.getElementById("review-section").classList.remove("d-none");
+    document.getElementById("review-section").hidden = false;
 }
 document.getElementById("review-btn").addEventListener("click", function() {
     showReview();
 });
 document.getElementById("restart-btn").addEventListener("click", function() {
 
-    // Stop the timer
     clearInterval(timerInterval);
 
-    // Reset quiz values
     currentQuestion = 0;
     score = 0;
     speedBonus = 0;
@@ -576,14 +575,13 @@ document.getElementById("restart-btn").addEventListener("click", function() {
     selectedQuestions = [];
     timeLeft = 30;
 
-    // Reset timer display
     document.getElementById("timer").textContent = "30";
 
-    // Hide result screen
     resultScreen.classList.add("d-none");
-
-    // Show start screen
     startScreen.classList.remove("d-none");
+
+    document.getElementById("review-section").hidden = true;
+    document.getElementById("review-container").innerHTML = "";
 
 });
 function showHistory() {
