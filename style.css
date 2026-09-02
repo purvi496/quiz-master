@@ -1,36 +1,145 @@
 body {
     background-color: #f5f7fb;
+    color: #212529;
 }
 
-h1 {
-    font-weight: 700;
+/* Main Container */
+
+.container {
+    max-width: 1000px;
 }
+
+/* Start Screen */
+
+#start-screen {
+    padding-top: 20px;
+}
+
+#start-screen h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 10px !important;
+    letter-spacing: -1px;
+}
+
+#start-screen .lead {
+    color: #6c757d;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+#start-screen .card {
+    border: 1px solid #e3e7ed;
+    border-radius: 16px;
+    padding: 30px !important;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09) !important;
+}
+
+#start-screen h4 {
+    font-size: 25px;
+    font-weight: 600;
+    margin-bottom: 20px !important;
+}
+
+#difficulty {
+    height: 46px;
+    border-radius: 8px;
+    border-color: #ced4da;
+}
+
+#start-btn {
+    height: 46px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 500;
+    background-color: #0d6efd;
+    border: none;
+    transition: 0.2s ease;
+}
+
+#start-btn:hover {
+    background-color: #0b5ed7;
+    transform: translateY(-1px);
+}
+
+/* General Cards */
 
 .card {
     border: none;
+    border-radius: 14px;
+}
+
+/* Quiz Screen */
+
+#quiz-screen .card {
+    border: 1px solid #e3e7ed;
+}
+
+#question-number,
+#quiz-screen .d-flex span {
+    color: #6c757d;
+}
+
+#question-number {
+    font-weight: 500;
+}
+
+#question {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.progress {
+    height: 10px;
+    border-radius: 10px;
+    background-color: #e9ecef;
+}
+
+.progress-bar {
+    border-radius: 10px;
 }
 
 #options button {
     text-align: left;
     padding: 12px;
+    border-radius: 8px;
+    transition: 0.2s ease;
 }
 
 #options button:hover {
     background-color: #e9ecef;
+    transform: translateY(-1px);
 }
 
 #options button:disabled {
     opacity: 1;
 }
 
-#question {
-    font-size: 24px;
+/* Next Button */
+
+#next-btn {
+    border-radius: 8px;
+    padding: 11px;
 }
 
-.progress {
-    height: 10px;
+/* Result Screen */
+
+#result-screen .card {
+    border: 1px solid #e3e7ed;
 }
 
+#result-screen h1 {
+    font-weight: 700;
+}
+
+#result-screen h3 {
+    font-weight: 600;
+}
+
+#result-screen p {
+    font-size: 17px;
+}
 
 /* Review Answers */
 
@@ -41,6 +150,7 @@ h1 {
 #review-container .card {
     border-radius: 10px;
     margin-bottom: 15px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
 }
 
 #review-container h5 {
@@ -49,4 +159,30 @@ h1 {
 
 #review-container p {
     margin-bottom: 8px;
+}
+
+/* Buttons */
+
+#review-btn,
+#restart-btn {
+    border-radius: 8px;
+    padding: 10px 18px;
+}
+
+/* Mobile */
+
+@media (max-width: 576px) {
+
+    #start-screen h1 {
+        font-size: 38px;
+    }
+
+    #start-screen .card {
+        padding: 22px !important;
+    }
+
+    #question {
+        font-size: 21px;
+    }
+
 }

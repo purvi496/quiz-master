@@ -257,14 +257,14 @@ function showQuestion() {
     optionsContainer.innerHTML = "";
 
     // Create a button for each option
-    question.options.forEach(function(option) {
+    question.options.forEach(function (option) {
 
         const button = document.createElement("button");
 
         button.textContent = option;
         button.classList.add("btn", "btn-outline-primary");
 
-        button.addEventListener("click", function() {
+        button.addEventListener("click", function () {
             checkAnswer(option);
         });
 
@@ -279,34 +279,34 @@ function startTimer() {
     timeLeft = 30;
     document.getElementById("timer").textContent = timeLeft;
 
-    timerInterval = setInterval(function() {
+    timerInterval = setInterval(function () {
 
         timeLeft--;
 
         document.getElementById("timer").textContent = timeLeft;
         if (timeLeft <= 0) {
 
-    clearInterval(timerInterval);
+            clearInterval(timerInterval);
 
-    const question = selectedQuestions[currentQuestion];
+            const question = selectedQuestions[currentQuestion];
 
-    // Store unanswered question
-    userAnswers.push({
-        question: question.question,
-        userAnswer: "Not answered",
-        correctAnswer: question.answer,
-        timeSpent: 30
-    });
+            // Store unanswered question
+            userAnswers.push({
+                question: question.question,
+                userAnswer: "Not answered",
+                correctAnswer: question.answer,
+                timeSpent: 30
+            });
 
-    currentQuestion++;
+            currentQuestion++;
 
-    if (currentQuestion < selectedQuestions.length) {
-        showQuestion();
-        startTimer();
-    } else {
-        showResults();
-    }
-}
+            if (currentQuestion < selectedQuestions.length) {
+                showQuestion();
+                startTimer();
+            } else {
+                showResults();
+            }
+        }
 
     }, 1000);
 }
@@ -318,22 +318,22 @@ const resultScreen = document.getElementById("result-screen");
 const difficultySelect = document.getElementById("difficulty");
 const startButton = document.getElementById("start-btn");
 
-startButton.addEventListener("click", function() {
+startButton.addEventListener("click", function () {
 
     const selectedDifficulty = difficultySelect.value;
-currentDifficulty = selectedDifficulty;
-    const filteredQuestions = quizQuestions.filter(function(question) {
+    currentDifficulty = selectedDifficulty;
+    const filteredQuestions = quizQuestions.filter(function (question) {
         return question.difficulty === selectedDifficulty;
     });
 
-    selectedQuestions = filteredQuestions.sort(function() {
+    selectedQuestions = filteredQuestions.sort(function () {
         return Math.random() - 0.5;
     });
 
     currentQuestion = 0;
-score = 0;
-speedBonus = 0;
-userAnswers = [];
+    score = 0;
+    speedBonus = 0;
+    userAnswers = [];
 
     startScreen.classList.add("d-none");
     quizScreen.classList.remove("d-none");
@@ -365,22 +365,22 @@ function checkAnswer(selectedAnswer) {
     // Check if the selected answer is correct
     if (selectedAnswer === question.answer) {
 
-    // Correct answer gives 10 points
-    score += 10;
+        // Correct answer gives 10 points
+        score += 10;
 
-    // Give extra points for answering quickly
-    if (timeLeft >= 20) {
-        score += 5;
-        speedBonus += 5;
-    } else if (timeLeft >= 10) {
-        score += 3;
-        speedBonus += 3;
-    } else if (timeLeft > 0) {
-        score += 1;
-        speedBonus += 1;
-    }
+        // Give extra points for answering quickly
+        if (timeLeft >= 20) {
+            score += 5;
+            speedBonus += 5;
+        } else if (timeLeft >= 10) {
+            score += 3;
+            speedBonus += 3;
+        } else if (timeLeft > 0) {
+            score += 1;
+            speedBonus += 1;
+        }
 
-    buttons.forEach(function(button) {
+        buttons.forEach(function (button) {
             if (button.textContent === selectedAnswer) {
                 button.classList.remove("btn-outline-primary");
                 button.classList.add("btn-success");
@@ -389,7 +389,7 @@ function checkAnswer(selectedAnswer) {
 
     } else {
 
-        buttons.forEach(function(button) {
+        buttons.forEach(function (button) {
 
             // Mark selected answer as wrong
             if (button.textContent === selectedAnswer) {
@@ -404,25 +404,15 @@ function checkAnswer(selectedAnswer) {
             }
         });
     }
-
-    // Disable all answer buttons after selecting
-    buttons.forEach(function(button) {
+    buttons.forEach(function (button) {
         button.disabled = true;
     });
-
-    // Enable Next button
     document.getElementById("next-btn").disabled = false;
-
-    // Update score on screen
     document.getElementById("score").textContent = score;
 }
-
-document.getElementById("next-btn").addEventListener("click", function() {
-
+document.getElementById("next-btn").addEventListener("click", function () {
     clearInterval(timerInterval);
-
     currentQuestion++;
-
     if (currentQuestion < selectedQuestions.length) {
         showQuestion();
         startTimer();
@@ -430,29 +420,15 @@ document.getElementById("next-btn").addEventListener("click", function() {
         showResults();
     }
 });
-
 function showResults() {
-
-    // Stop the timer
     clearInterval(timerInterval);
-
-    // Find number of correct answers
-    const correctAnswers = userAnswers.filter(function(answer) {
+    const correctAnswers = userAnswers.filter(function (answer) {
         return answer.userAnswer === answer.correctAnswer;
     }).length;
-
-    // Find number of wrong answers
     const wrongAnswers = selectedQuestions.length - correctAnswers;
-
-    // Calculate maximum possible score
     const maxScore = selectedQuestions.length * 15;
-
-    // Calculate percentage
     const percentage = (score / maxScore) * 100;
-
-    // Calculate grade
     let grade;
-
     if (percentage >= 90) {
         grade = "A";
     } else if (percentage >= 80) {
@@ -464,154 +440,111 @@ function showResults() {
     } else {
         grade = "F";
     }
-
     quizScreen.classList.add("d-none");
-
     resultScreen.classList.remove("d-none");
-    document.getElementById("review-section").hidden = true;
-    
+    document.getElementById("review-section").hidden = true
     document.getElementById("review-container").innerHTML = "";
-
     document.getElementById("final-score").textContent =
         score + " points";
-
     document.getElementById("percentage").textContent =
         percentage.toFixed(0) + "%";
-
     document.getElementById("grade").textContent = grade;
-
     document.getElementById("correct-count").textContent =
         correctAnswers;
-
     document.getElementById("wrong-count").textContent =
         wrongAnswers;
-
     document.getElementById("speed-bonus").textContent =
         speedBonus;
-            // Save quiz attempt
     const history = JSON.parse(localStorage.getItem("quizHistory")) || [];
-
     const attempt = {
         difficulty: currentDifficulty,
         score: score,
         percentage: percentage.toFixed(0),
         date: new Date().toLocaleString()
     };
-
     history.push(attempt);
-
     localStorage.setItem("quizHistory", JSON.stringify(history));
     showHistory();
+    showStatistics();
 }
 function showReview() {
-
     const reviewContainer = document.getElementById("review-container");
-
-   reviewContainer.innerHTML = "";
-reviewContainer.classList.add("mt-3");
-
-    userAnswers.forEach(function(answer, index) {
-
+    reviewContainer.innerHTML = "";
+    reviewContainer.classList.add("mt-3");
+    userAnswers.forEach(function (answer, index) {
         const question = selectedQuestions[index];
-
         const reviewCard = document.createElement("div");
         reviewCard.classList.add("card", "mb-3", "p-3", "text-start");
-
         const isCorrect =
             answer.userAnswer === answer.correctAnswer;
-
         if (isCorrect) {
             reviewCard.classList.add("border-success");
         } else {
             reviewCard.classList.add("border-danger");
         }
-
         reviewCard.innerHTML = `
             <h5>Question ${index + 1}</h5>
-
             <p><strong>${question.question}</strong></p>
-
             <p>
                 Your Answer:
                 <span class="${isCorrect ? "text-success" : "text-danger"}">
                     ${answer.userAnswer}
                 </span>
             </p>
-
             <p>
                 Correct Answer:
                 <span class="text-success">
                     ${answer.correctAnswer}
                 </span>
             </p>
-
             <p>
                 Time Spent:
                 <strong>${answer.timeSpent} seconds</strong>
             </p>
-
             <p class="mb-0">
                 <strong>Explanation:</strong>
                 ${question.explanation}
             </p>
         `;
-
         reviewContainer.appendChild(reviewCard);
     });
-
     document.getElementById("review-section").hidden = false;
 }
-document.getElementById("review-btn").addEventListener("click", function() {
+document.getElementById("review-btn").addEventListener("click", function () {
     showReview();
 });
-document.getElementById("restart-btn").addEventListener("click", function() {
-
+document.getElementById("restart-btn").addEventListener("click", function () {
     clearInterval(timerInterval);
-
     currentQuestion = 0;
     score = 0;
     speedBonus = 0;
     userAnswers = [];
     selectedQuestions = [];
     timeLeft = 30;
-
     document.getElementById("timer").textContent = "30";
-
     resultScreen.classList.add("d-none");
     startScreen.classList.remove("d-none");
-
     document.getElementById("review-section").hidden = true;
     document.getElementById("review-container").innerHTML = "";
-
 });
 function showHistory() {
-
     const historyContainer =
         document.getElementById("history-container");
-
     const history =
         JSON.parse(localStorage.getItem("quizHistory")) || [];
-
     historyContainer.innerHTML = "";
-
     if (history.length === 0) {
-
         historyContainer.innerHTML =
             "<p>No quiz attempts yet.</p>";
-
         return;
     }
-
-    history.forEach(function(attempt, index) {
-
+    history.forEach(function (attempt, index) {
         const historyItem = document.createElement("div");
-
         historyItem.classList.add(
             "card",
             "p-3",
             "mb-2"
         );
-
         historyItem.innerHTML = `
             <strong>Attempt ${index + 1}</strong>
             <p class="mb-1">
@@ -627,7 +560,55 @@ function showHistory() {
                 ${attempt.date}
             </small>
         `;
-
         historyContainer.appendChild(historyItem);
     });
+}
+function showStatistics() {
+    const statsContainer = document.getElementById("stats-container");
+    const history = JSON.parse(localStorage.getItem("quizHistory")) || [];
+    if (history.length === 0) {
+        statsContainer.innerHTML = "<p>No statistics yet.</p>";
+        return;
+    }
+    const numberOfAttempts = history.length;
+    const totalScore = history.reduce(function (sum, attempt) {
+        return sum + attempt.score;
+    }, 0);
+    const averageScore = (totalScore / numberOfAttempts).toFixed(1);
+
+    const bestScore = Math.max(...history.map(function (attempt) {
+        return attempt.score;
+    }));
+    const difficultyStats = {};
+    history.forEach(function (attempt) {
+        if (!difficultyStats[attempt.difficulty]) {
+            difficultyStats[attempt.difficulty] = {
+                attempts: 0,
+                totalPercentage: 0
+            };
+        }
+        difficultyStats[attempt.difficulty].attempts++;
+        difficultyStats[attempt.difficulty].totalPercentage += Number(attempt.percentage);
+    });
+    let performanceHTML = "";
+    Object.keys(difficultyStats).forEach(function (difficulty) {
+        const data = difficultyStats[difficulty];
+        const averagePercentage =
+            (data.totalPercentage / data.attempts).toFixed(0);
+        performanceHTML += `
+            <p>
+                <strong>${difficulty}:</strong>
+                ${averagePercentage}% average
+            </p>
+        `;
+    });
+    statsContainer.innerHTML = `
+        <div class="card p-3">
+            <p>Number of Attempts: <strong>${numberOfAttempts}</strong></p>
+            <p>Average Score: <strong>${averageScore} points</strong></p>
+            <p>Best Score: <strong>${bestScore} points</strong></p>
+            <p class="mb-2"><strong>Performance by Difficulty:</strong></p>
+            ${performanceHTML}
+        </div>
+    `;
 }
