@@ -1,15 +1,54 @@
+/* ================================
+   General Page
+================================ */
+
 body {
-    background-color: #f5f7fb;
-    color: #212529;
+    background:
+        radial-gradient(
+            circle at 8% 15%,
+            rgba(139, 124, 246, 0.28),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 92% 18%,
+            rgba(244, 158, 190, 0.24),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 88%,
+            rgba(110, 170, 235, 0.22),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 15% 90%,
+            rgba(226, 180, 245, 0.18),
+            transparent 25%
+        ),
+        linear-gradient(
+            135deg,
+            #f4f3ff 0%,
+            #f8f6ff 45%,
+            #fff5fa 100%
+        );
+
+    background-attachment: fixed;
+    color: #27243a;
+    min-height: 100vh;
 }
 
-/* Main Container */
+
+/* ================================
+   Main Container
+================================ */
 
 .container {
     max-width: 1000px;
 }
 
-/* Start Screen */
+
+/* ================================
+   Start Screen
+================================ */
 
 #start-screen {
     padding-top: 20px;
@@ -20,64 +59,144 @@ body {
     font-weight: 700;
     margin-bottom: 10px !important;
     letter-spacing: -1px;
+    color: #51458a;
 }
 
 #start-screen .lead {
-    color: #6c757d;
+    color: #77728a;
     font-size: 20px;
     margin-bottom: 25px;
 }
 
 #start-screen .card {
-    border: 1px solid #e3e7ed;
-    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
     padding: 30px !important;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09) !important;
+
+    background: rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 20px 45px rgba(83, 68, 120, 0.12),
+        0 5px 15px rgba(83, 68, 120, 0.06) !important;
+
+    transition: 0.25s ease;
+}
+
+#start-screen .card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 25px 50px rgba(83, 68, 120, 0.16),
+        0 7px 18px rgba(83, 68, 120, 0.07) !important;
 }
 
 #start-screen h4 {
     font-size: 25px;
     font-weight: 600;
     margin-bottom: 20px !important;
+    color: #302d3d;
 }
 
-#difficulty {
-    height: 46px;
-    border-radius: 8px;
-    border-color: #ced4da;
-}
 
-#start-btn {
-    height: 46px;
-    border-radius: 8px;
-    font-size: 17px;
-    font-weight: 500;
-    background-color: #0d6efd;
-    border: none;
-    transition: 0.2s ease;
-}
-
-#start-btn:hover {
-    background-color: #0b5ed7;
-    transform: translateY(-1px);
-}
-
-/* General Cards */
+/* ================================
+   General Cards
+================================ */
 
 .card {
     border: none;
-    border-radius: 14px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.95);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
 
-/* Quiz Screen */
+
+/* ================================
+   Difficulty Dropdown
+================================ */
+
+#difficulty {
+    height: 46px;
+    border-radius: 10px;
+
+    border: 1px solid #d9d5e5;
+    background-color: #ffffff;
+
+    color: #403c4d;
+
+    transition: 0.2s ease;
+}
+
+#difficulty:hover {
+    border-color: #aaa2c4;
+}
+
+#difficulty:focus {
+    border-color: #7c70b5;
+
+    box-shadow:
+        0 0 0 3px rgba(124, 112, 181, 0.13);
+}
+
+
+/* ================================
+   Start Button
+================================ */
+
+#start-btn {
+    height: 46px;
+    border-radius: 10px;
+
+    font-size: 17px;
+    font-weight: 600;
+
+    background: linear-gradient(
+        135deg,
+        #7569d8,
+        #687ee5
+    );
+
+    border: none;
+
+    transition: 0.25s ease;
+
+    box-shadow:
+        0 6px 15px rgba(103, 92, 190, 0.25);
+}
+
+#start-btn:hover {
+    background: linear-gradient(
+        135deg,
+        #675bc8,
+        #5870d7
+    );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(103, 92, 190, 0.30);
+}
+
+#start-btn:active {
+    transform: translateY(0);
+}
+
+
+/* ================================
+   Quiz Screen
+================================ */
 
 #quiz-screen .card {
-    border: 1px solid #e3e7ed;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 18px 40px rgba(83, 68, 120, 0.10) !important;
 }
 
 #question-number,
 #quiz-screen .d-flex span {
-    color: #6c757d;
+    color: #77728a;
 }
 
 #question-number {
@@ -88,49 +207,145 @@ body {
     font-size: 24px;
     font-weight: 500;
     line-height: 1.4;
+    color: #302d3d;
 }
+
+
+/* ================================
+   Progress Bar
+================================ */
 
 .progress {
     height: 10px;
     border-radius: 10px;
-    background-color: #e9ecef;
+
+    background-color: #e8e5f2;
+    overflow: hidden;
 }
 
 .progress-bar {
     border-radius: 10px;
+
+    background: #776bd5 !important;
 }
+
+
+/* ================================
+   Answer Options
+================================ */
+
+/*
+   IMPORTANT:
+   Do NOT set a background color here.
+   Your JavaScript/Bootstrap uses
+   btn-success and btn-danger to show
+   correct/wrong answers.
+*/
 
 #options button {
     text-align: left;
     padding: 12px;
-    border-radius: 8px;
+
+    border-radius: 10px;
+
+    border: 1px solid #dedbea;
+
+    color: #3d3949;
+
     transition: 0.2s ease;
 }
 
-#options button:hover {
-    background-color: #e9ecef;
+
+/* Normal unanswered options */
+
+#options button:not(.btn-success):not(.btn-danger):not(:disabled) {
+    background-color: #ffffff;
+}
+
+
+/* Hover only for unanswered options */
+
+#options button:not(.btn-success):not(.btn-danger):not(:disabled):hover {
+    background-color: #f6f4ff;
+    border-color: #aaa1d0;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 5px 12px rgba(104, 91, 171, 0.10);
+}
+
+
+/* ================================
+   Correct Answer
+================================ */
+
+/*
+   Keep Bootstrap's green feedback visible.
+*/
+
+#options button.btn-success {
+    background-color: #198754 !important;
+    border-color: #198754 !important;
+    color: #ffffff !important;
+}
+
+
+/* ================================
+   Wrong Answer
+================================ */
+
+/*
+   Keep Bootstrap's red feedback visible.
+*/
+
+#options button.btn-danger {
+    background-color: #dc3545 !important;
+    border-color: #dc3545 !important;
+    color: #ffffff !important;
+}
+
+
+/* Don't fade the answer feedback */
+
+#options button.btn-success:disabled,
+#options button.btn-danger:disabled {
+    opacity: 1 !important;
+}
+
+
+/* ================================
+   Next Button
+================================ */
+
+#next-btn {
+    border-radius: 10px;
+    padding: 11px;
+
+    font-weight: 500;
+
+    transition: 0.2s ease;
+}
+
+#next-btn:hover {
     transform: translateY(-1px);
 }
 
-#options button:disabled {
-    opacity: 1;
-}
 
-/* Next Button */
-
-#next-btn {
-    border-radius: 8px;
-    padding: 11px;
-}
-
-/* Result Screen */
+/* ================================
+   Result Screen
+================================ */
 
 #result-screen .card {
-    border: 1px solid #e3e7ed;
+    border: 1px solid rgba(255, 255, 255, 0.95);
+
+    box-shadow:
+        0 20px 45px rgba(83, 68, 120, 0.12) !important;
 }
 
 #result-screen h1 {
     font-weight: 700;
+    color: #51458a;
 }
 
 #result-screen h3 {
@@ -139,18 +354,33 @@ body {
 
 #result-screen p {
     font-size: 17px;
+    color: #706b7b;
 }
 
-/* Review Answers */
+
+/* ================================
+   Review Answers
+================================ */
 
 #review-section {
     text-align: left;
 }
 
 #review-container .card {
-    border-radius: 10px;
+    border-radius: 12px;
     margin-bottom: 15px;
-    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06) !important;
+
+    box-shadow:
+        0 5px 15px rgba(83, 68, 120, 0.07) !important;
+
+    transition: 0.2s ease;
+}
+
+#review-container .card:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 8px 18px rgba(83, 68, 120, 0.10) !important;
 }
 
 #review-container h5 {
@@ -161,15 +391,30 @@ body {
     margin-bottom: 8px;
 }
 
-/* Buttons */
+
+/* ================================
+   Review / Restart Buttons
+================================ */
 
 #review-btn,
 #restart-btn {
-    border-radius: 8px;
+    border-radius: 10px;
     padding: 10px 18px;
+
+    font-weight: 500;
+
+    transition: 0.2s ease;
 }
 
-/* Mobile */
+#review-btn:hover,
+#restart-btn:hover {
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   Mobile
+================================ */
 
 @media (max-width: 576px) {
 
@@ -185,4 +430,7 @@ body {
         font-size: 21px;
     }
 
+    #start-screen .lead {
+        font-size: 18px;
+    }
 }
